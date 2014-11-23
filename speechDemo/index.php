@@ -4,16 +4,10 @@
 <body>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-<!--<form action="javascript:void(0);" method="post">-->
-<form action="getResult.php" method="post">
-    <input type="text" name="text" placeholder="enter a text" />
-    <input type="submit" value="submit" />
-</form>
-8
-69
-70
+<div id="renderText"></div>
+
 <div>
-  <a href="#" id="start_button" onclick="startDictation(event)">Dictate</a>
+  <a href="#" id="start_button" onclick="startDictation(event)">Dictate / Render</a>
 </div>
  
 <div id="results">
@@ -43,7 +37,7 @@ if ('webkitSpeechRecognition' in window) {
   recognition.onend = function() {
     recognizing = false;
       jQuery.get('getResult.php?text=' + final_transcript, function(data) {
-          console.log(data);
+          document.getElementById('renderText').innerHTML = data;
       } )
   };
  
