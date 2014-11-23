@@ -1,8 +1,8 @@
 <?php
 
 //phpinfo();
-$_REQUEST['text'];
-$ch = curl_init("http://api.corrasable.com/words/difficult");
+$input=$_REQUEST['text'];
+$ch = curl_init("http://api.corrasable.com/words/".$input);
 $fp = fopen("result.txt", "w");
 
 curl_setopt($ch, CURLOPT_FILE, $fp);
