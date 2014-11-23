@@ -2,6 +2,7 @@
 <head>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 <!--<form action="javascript:void(0);" method="post">-->
 <form action="getResult.php" method="post">
@@ -41,6 +42,9 @@ if ('webkitSpeechRecognition' in window) {
  
   recognition.onend = function() {
     recognizing = false;
+      jQuery.get('getResult.php?text=' + final_transcript, function(data) {
+          console.log(data);
+      } )
   };
  
   recognition.onresult = function(event) {
@@ -83,13 +87,13 @@ function startDictation(event) {
 </script>
 
 <? 
-require 'google_speech.php';
+require 'gSpeech.php';
 
-$s = new cgoogle_speech('put your API key here'); 
+// $s = new cgoogle_speech('put your API key here');
 
-$output = $s->process('@test.flac', 'en-US', 8000);      
+// $output = $s->process('@test.flac', 'en-US', 8000);
 
-print_r($output);
+// print_r($output);
 ?>
 
 <!--
